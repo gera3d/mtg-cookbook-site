@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <title>Terra, Magical Adept — $25.27 Omen Constellation</title>
+  <style>
+    :root{color-scheme:dark;--ink:#ededed;--muted:#c7c7cc;--paper:#07070d;--panel:rgba(255,255,255,.03);--raised:rgba(255,255,255,.06);--line:rgba(255,255,255,.1);--mint:#ff7940;--gold:#ff7940;--violet:#ff7940;--coral:#ff7940}
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { min-width:320px; margin:0; background:radial-gradient(circle at 88% -12%,rgba(89,164,151,.35),transparent 35%),radial-gradient(circle at 4% 36%,rgba(215,126,97,.16),transparent 28%),var(--paper); color:var(--ink); font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { max-width:1240px; margin:0 auto; padding:35px 24px 56px; }
+    header { padding-bottom:27px; border-bottom:1px solid var(--line); }
+    .eyebrow { color:var(--gold); font-size:.75rem; font-weight:760; letter-spacing:.14em; text-transform:uppercase; }
+    h1 { max-width:960px; margin:8px 0 12px; font-size:clamp(2.35rem,5.7vw,4.7rem); letter-spacing:-.057em; line-height:.98; }
+    .subhead { max-width:880px; margin:0; color:var(--muted); font-size:1.05rem; line-height:1.57; }
+    .stats { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+    .stat { min-width:142px; padding:10px 13px; border:1px solid var(--line); border-radius:10px; background:rgba(28,37,45,.88); }
+    .stat strong { display:block; color:var(--mint); font-size:1.19rem; font-variant-numeric:tabular-nums; }
+    .stat span { color:var(--muted); font-size:.81rem; }
+    nav { display:flex; flex-wrap:wrap; gap:9px; margin-top:20px; }
+    nav a { padding:8px 10px; border:1px solid var(--line); border-radius:999px; color:var(--ink); font-size:.83rem; text-decoration:none; }
+    nav a:hover, nav a:focus-visible { border-color:var(--mint); color:var(--mint); outline:none; }
+    .split { display:grid; grid-template-columns:1.2fr .8fr; gap:16px; margin-top:27px; }
+    .panel { padding:19px; border:1px solid var(--line); border-radius:13px; background:linear-gradient(145deg,rgba(36,49,59,.96),rgba(28,37,45,.97)); }
+    h2 { margin:0 0 10px; color:var(--gold); font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; }
+    h3 { margin:0 0 7px; font-size:1.07rem; }
+    p { line-height:1.55; }
+    .panel p { margin:0; color:var(--muted); font-size:.92rem; }
+    .lines { display:grid; gap:10px; }
+    .line { padding:11px 12px; border-left:3px solid var(--coral); border-radius:0 8px 8px 0; background:rgba(255,121,64,.07); color:var(--muted); font-size:.9rem; line-height:1.46; }
+    .line strong { color:var(--ink); }
+    .oracle { margin-top:12px !important; padding-top:12px; border-top:1px solid var(--line); }
+    .oracle strong { color:var(--mint); }
+    .section { margin-top:32px; scroll-margin-top:20px; }
+    .heading { display:flex; align-items:end; justify-content:space-between; gap:18px; margin-bottom:11px; }
+    .heading h2 { margin:0; }
+    .heading p { max-width:650px; margin:0; color:var(--muted); font-size:.86rem; text-align:right; }
+    .price-flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+    .price-flow div { min-height:112px; padding:14px; border:1px solid var(--line); border-radius:10px; background:var(--panel); color:var(--muted); font-size:.88rem; line-height:1.47; }
+    .price-flow strong { display:block; margin-bottom:4px; color:var(--ink); }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:11px; }
+    table { width:100%; min-width:650px; border-collapse:collapse; background:var(--panel); font-size:.9rem; }
+    th,td { padding:11px 12px; border-bottom:1px solid rgba(58,75,84,.85); text-align:left; vertical-align:top; }
+    tr:last-child td { border-bottom:0; }
+    th { color:var(--muted); font-size:.73rem; font-weight:750; letter-spacing:.09em; text-transform:uppercase; }
+    td.price { color:var(--mint); font-weight:750; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+    td.muted { color:var(--muted); }
+    .deck { display:grid; grid-template-columns:minmax(0,1fr) minmax(278px,360px); gap:28px; align-items:start; }
+    .toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:11px; margin-bottom:12px; }
+    .toolbar h2 { margin:0; }
+    input { flex:1 1 220px; max-width:365px; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--ink); font:inherit; }
+    input:focus { outline:2px solid var(--mint); outline-offset:2px; }
+    .groups { display:grid; gap:24px; }
+    .group-title { display:flex; justify-content:space-between; gap:15px; margin:0 0 9px; color:var(--gold); font-size:.8rem; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
+    .group-title span { color:var(--muted); font-size:.78rem; font-weight:500; letter-spacing:normal; text-transform:none; }
+    .list { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:7px; }
+    .card-row { display:flex; overflow:hidden; border:1px solid var(--line); border-radius:8px; background:var(--panel); transition:transform .12s ease,border-color .12s ease,background .12s ease; }
+    .card-row:hover,.card-row:focus-within { transform:translateY(-1px); border-color:var(--mint); background:var(--raised); }
+    .card-name { min-width:0; flex:1; overflow:hidden; padding:10px 11px; border:0; background:transparent; color:var(--ink); cursor:pointer; font:inherit; font-size:.88rem; line-height:1.23; text-align:left; text-overflow:ellipsis; white-space:nowrap; }
+    .card-name:focus-visible { outline:2px solid var(--violet); outline-offset:-3px; }
+    .tag { display:grid; min-width:53px; place-items:center; padding:0 8px; border-left:1px solid var(--line); color:var(--mint); font-size:.72rem; font-weight:750; text-transform:uppercase; }
+    .owned .tag { color:var(--gold); }
+    aside { position:sticky; top:20px; }
+    .preview { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:var(--panel); }
+    .art { display:grid; min-height:400px; place-items:center; background:linear-gradient(140deg,#1a100c,#1a100c 57%,#1a100c); }
+    .art img { display:block; width:100%; height:auto; }
+    .placeholder { max-width:245px; padding:24px; color:var(--muted); font-size:.9rem; line-height:1.55; text-align:center; }
+    .meta { padding:16px 17px 18px; }
+    .meta h3 { margin:0; font-size:1.05rem; }
+    .meta p,.note { margin:6px 0 0; color:var(--muted); font-size:.86rem; line-height:1.5; }
+    .note { margin:27px 0 0; }
+    .note strong { color:var(--ink); }
+    a { color:var(--violet); text-underline-offset:2px; }
+    a:hover,a:focus-visible { color:#1a100c; }
+    @media (max-width:850px) { main { padding:25px 16px 42px; } .split,.deck { grid-template-columns:1fr; } aside { position:static; order:-1; } .preview { display:grid; grid-template-columns:minmax(138px,220px) 1fr; } .art { min-height:0; } .meta { align-self:center; } }
+    @media (max-width:640px) { .price-flow { grid-template-columns:1fr; } .heading { display:block; } .heading p { margin-top:7px; text-align:left; } .stat { flex:1 1 128px; } .list { grid-template-columns:1fr; } .preview { grid-template-columns:1fr; } .art { min-height:300px; } }
+
+.mc-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(7,7,13,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.1)}
+.mc-nav-inner{max-width:1300px;margin:0 auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mc-back{display:inline-flex;align-items:center;gap:7px;color:rgba(237,237,239,.72);text-decoration:none;font-size:.82rem;font-weight:600;white-space:nowrap;font-family:"Inter",sans-serif}
+.mc-back:hover{color:#ff7940}
+.mc-back .mark{display:block;width:20px;height:20px;object-fit:contain}
+.mc-siblings{display:flex;gap:6px;flex-wrap:wrap;flex:1;justify-content:center}
+.mc-siblings a{padding:5px 10px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(237,237,239,.6);text-decoration:none;font-size:.74rem;font-weight:600;white-space:nowrap;font-family:"DM Mono",monospace}
+.mc-siblings a:hover{border-color:#ff7940;color:#ff7940}
+.mc-siblings a.current{border-color:#ff7940;color:#ff7940;background:rgba(255,121,64,.12)}
+.mc-heat{padding:4px 10px;border-radius:999px;font-size:.66rem;font-weight:700;letter-spacing:.04em;white-space:nowrap;font-family:"DM Mono",monospace;text-transform:uppercase}
+.mc-heat.mild{background:rgba(255,121,64,.12);color:#ffc1ae}
+.mc-heat.medium{background:rgba(255,121,64,.16);color:#ff7940}
+.mc-heat.hot{background:rgba(224,76,40,.2);color:#ff8a63}
+.mc-heat.extrahot{background:rgba(224,76,40,.32);color:#ffab8a}
+.mc-status{padding:4px 10px;border-radius:999px;font-size:.66rem;font-weight:700;letter-spacing:.03em;white-space:nowrap;border:1px solid transparent;font-family:"DM Mono",monospace}
+.mc-status.bought{background:rgba(224,76,40,.14);color:#ff7940;border-color:rgba(255,121,64,.3)}
+.mc-status.notyet{background:rgba(255,255,255,.04);color:#8c8c94;border-color:rgba(255,255,255,.12)}
+@media(max-width:640px){.mc-siblings{order:3;width:100%;justify-content:flex-start}}
+body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",ui-sans-serif,sans-serif;padding-top:64px}
+  </style>
+</head>
+<body>
+<nav class="mc-nav"><div class="mc-nav-inner">
+<a class="mc-back" href="my-decks.html"><img class="mark" src="data:image/png;base64,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" alt="57">My Decks</a>
+<div class="mc-siblings">
+<a class="current" href="terra-magical-adept-omen-constellation.html">$25.27 Omen</a>
+<a href="terra-magical-adept-cardtrader-zero.html">$43.16 Saga-Burst</a>
+</div>
+<span class="mc-heat hot">HOT</span><span class="mc-status bought">Purchased</span>
+</div></nav>
+  <main>
+    <header>
+      <div class="eyebrow">Terra, Magical Adept · Omen and Saga Constellation</div>
+      <h1>Cheap enchantments.<br>Real Terra targets.</h1>
+      <p class="subhead">This is the lower-cost alternative to the Saga-burst build. Rather than buying premium enchantress engines, it uses Omens that provide value when copied, cheap Sagas that Terra can rush through, and constellation creatures that turn every enchantment into cards, tokens, removal, or damage.</p>
+      <div class="stats">
+        <div class="stat"><strong>$25.27</strong><span>live merchandise floor</span></div>
+        <div class="stat"><strong>74 / 74</strong><span>cards still to buy</span></div>
+        <div class="stat"><strong>25</strong><span>basic lands you supply</span></div>
+        <div class="stat"><strong>4–5 / 10</strong><span>casual power target</span></div>
+      </div>
+      <nav aria-label="Page sections">
+        <a href="#price">Price readout</a>
+        <a href="#gameplan">How it plays</a>
+        <a href="#deck">Full 100-card deck</a>
+        <a href="terra-magical-adept-cardtrader-zero.html">Stronger $43 build</a>
+      </nav>
+    </header>
+
+    <section class="split" aria-label="Deck summary">
+      <div class="panel">
+        <h2>Why this is a different deck</h2>
+        <div class="lines">
+          <div class="line"><strong>Omens are cheap copy targets.</strong> Copy Omen of the Sea for cards, Omen of the Sun for bodies, Omen of the Hunt for mana, or Omen of the Forge for immediate damage.</div>
+          <div class="line"><strong>Sagas are the burst mode.</strong> Terra can fast-forward an Eldest Reborn, Cruelty of Gix, Cerberus, or Fenrir token when the table gives her time to transform.</div>
+          <div class="line"><strong>Constellation closes games.</strong> Archon, Ajani’s Chosen, Doomwake Giant, and Grim Guardian make even the low-cost enchantments matter after the first cast.</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Color and legality</h2>
+        <h3>Five-color permission, green-red start</h3>
+        <p>The deck opens mostly on Forests and Mountains, then uses the remaining colors for Sagas and interaction. Terra’s back face makes her Commander color identity WUBRG because its fourth chapter produces each color of mana.</p>
+        <p class="oracle"><strong>Rules source:</strong> the <a href="https://magic.wizards.com/en/news/feature/final-fantasy-release-notes">official FINAL FANTASY release notes</a> explain Terra’s copy and lore-counter text. Every card in this page’s list was checked as Commander-legal and inside that identity.</p>
+      </div>
+    </section>
+
+    <section id="price" class="section">
+      <div class="heading"><h2>Read the $25.27 correctly</h2><p>Live CardTrader API snapshot checked August 4, 2026. English, nonfoil, CardTrader Zero-eligible listings.</p></div>
+      <div class="price-flow">
+        <div><strong>1. The scope is honest</strong>Terra and 25 basics are already owned. The total includes 62 spells and all 12 paid nonbasic lands.</div>
+        <div><strong>2. The list is complete</strong>All 74 cards had a matching listing. The floor came from 51 underlying sellers; CardTrader Zero can consolidate the purchase flow.</div>
+        <div><strong>3. It is not checkout</strong>Shipping, tax, condition choice, availability changes, and Zero service cost are determined later. No cart, wishlist, order, or purchase was created.</div>
+      </div>
+    </section>
+
+    <section id="gameplan" class="section">
+      <div class="heading"><h2>What stays cheap on purpose</h2><p>The top of the curve is composed of low-cost Sagas, not premium staples. The deck accepts a lower ceiling to preserve a coherent game.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Cheap core</th><th class="price">Live cost</th><th>Practical readout</th></tr></thead>
+          <tbody>
+            <tr><td>Enchantress-style card flow</td><td>Mesa Enchantress, Satyr Enchanter, Omen of the Sea</td><td class="price">$1.63</td><td class="muted">Not as explosive as Sythis plus Eidolon, but plenty for a casual Saga deck.</td></tr>
+            <tr><td>Constellation pressure</td><td>Archon, Ajani’s Chosen, Doomwake, Grim Guardian</td><td class="price">$1.32</td><td class="muted">Each Terra copy still produces tokens, shrink effects, or life-loss pressure.</td></tr>
+            <tr><td>High-value copy targets</td><td>Cruelty of Gix, Eldest Reborn, Fenrir, G.F. Cerberus</td><td class="price">$2.24</td><td class="muted">The commander remains a payoff, not merely a three-mana mill spell.</td></tr>
+            <tr><td>Mana base</td><td>25 owned basics and 12 budget nonbasics</td><td class="price">$2.75</td><td class="muted">This is where most of the savings and early-game consistency come from.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Important tradeoff:</strong> this intentionally omits Sythis, Eidolon of Blossoms, Weaver of Harmony, Yenna, Sol Ring, and Brilliant Restoration. The $43 Saga-burst version is stronger; this $25 version is the fun, focused one for tables where you would rather have a full deck now than wait on upgrades.</p>
+    </section>
+
+    <section id="deck" class="section">
+      <div class="deck">
+        <div>
+          <div class="toolbar"><h2>Full 100-card deck</h2><input id="search" type="search" placeholder="Filter the deck…" aria-label="Filter the deck list"></div>
+          <div id="groups" class="groups" aria-label="Full Terra Omen-constellation deck list"></div>
+        </div>
+        <aside aria-live="polite"><div class="preview"><div id="preview-art" class="art"><p class="placeholder">Hover, focus, or tap a card to load its image and current rules text.</p></div><div class="meta"><h3 id="preview-name">Card preview</h3><p id="preview-copy">The deck list works without the preview; card data is fetched only when you inspect a card.</p></div></div></aside>
+      </div>
+      <p class="note"><strong>Deck-construction note:</strong> 62 nonland spells, 12 nonbasic lands to buy, 25 owned basic lands, and Terra equal 100 cards. It has no duplicate nonbasic cards, premium fast mana, free interaction, deterministic combo, fetch/shock package, or hidden basic-land price allowance.</p>
+    </section>
+
+    <p class="note"><strong>Source trail:</strong> CardTrader’s <a href="https://www.cardtrader.com/en/docs/api/full/reference">API reference</a> defines the inventory research used here. Prices move; inspect the final CardTrader Zero checkout before spending. No external action has been taken.</p>
+  </main>
+
+  <script>
+    const groups = [
+      { title:"Commander · owned", cards:[["Terra, Magical Adept","owned"]] },
+      { title:"Ramp and early Saga setup", cards:[["Arcane Signet"],["Manalith"],["Wayfarer’s Bauble"],["Ornithopter of Paradise"],["Rampant Growth"],["Farseek"],["Cultivate"],["Migration Path"],["Search for Tomorrow"],["Sakura-Tribe Elder"],["Song of Freyalise"],["The Weatherseed Treaty"],["Binding the Old Gods"]] },
+      { title:"Omen and constellation engine", cards:[["Spirited Companion"],["Jukai Naturalist"],["Starfield Mystic"],["Satsuki, the Living Lore"],["Archon of Sun’s Grace"],["Doomwake Giant"],["Grim Guardian"],["Ajani’s Chosen"],["Mesa Enchantress"],["Satyr Enchanter"],["Omen of the Sea"],["Omen of the Forge"],["Omen of the Sun"],["Omen of the Hunt"],["Vessel of Nascency"]] },
+      { title:"Saga burst package", cards:[["The Eldest Reborn"],["Elspeth Conquers Death"],["The Elder Dragon War"],["Showdown of the Skalds"],["The Mending of Dominaria"],["The World Spell"],["Elspeth’s Nightmare"],["Battle of Frost and Fire"],["The Cruelty of Gix"],["The Birth of Meletis"],["The Binding of the Titans"],["The Restoration of Eiganjo"],["Teachings of the Kirin"],["Boseiju Reaches Skyward"],["The Fall of Lord Konda"],["The Long Reach of Night"],["Summon: Fenrir"],["Summon: G.F. Cerberus"]] },
+      { title:"Interaction and recovery", cards:[["Generous Gift"],["Beast Within"],["Chaos Warp"],["Stroke of Midnight"],["Return to Nature"],["Mortify"],["Chain Reaction"],["Austere Command"],["Repair and Recharge"],["Regrowth"],["Ghen, Arcanum Weaver"],["Grapple with the Past"],["Resurgent Belief"],["Seal of Primordium"],["Oblivion Ring"],["Feed the Swarm"]] },
+      { title:"Nonbasic lands · buy", cards:[["Command Tower"],["Exotic Orchard"],["Evolving Wilds"],["Terramorphic Expanse"],["Ash Barrens"],["Krosan Verge"],["Cinder Glade"],["Canopy Vista"],["Jungle Shrine"],["Frontier Bivouac"],["Opulent Palace"],["Thriving Isle"]] },
+      { title:"Basic lands · owned", cards:[["Forest ×10","owned"],["Mountain ×6","owned"],["Plains ×3","owned"],["Island ×3","owned"],["Swamp ×3","owned"]] }
+    ];
+
+    const root=document.getElementById("groups"), search=document.getElementById("search"), art=document.getElementById("preview-art"), nameBox=document.getElementById("preview-name"), copy=document.getElementById("preview-copy"), cache=new Map();
+    const lookup=name=>name.replace(/ ×\d+$/,"").replace(/’/g,"'");
+    async function showPreview(name) {
+      const cardName=lookup(name); nameBox.textContent=name; copy.textContent="Loading card image and rules text…"; art.innerHTML='<p class="placeholder">Loading…</p>';
+      try {
+        let data=cache.get(cardName);
+        if(!data){const response=await fetch("https://api.scryfall.com/cards/named?exact="+encodeURIComponent(cardName));if(!response.ok)throw new Error();data=await response.json();cache.set(cardName,data);}
+        const image=data.image_uris?.normal||data.card_faces?.[0]?.image_uris?.normal;if(!image)throw new Error();
+        const img=new Image();img.src=image;img.alt=data.name+" card image";art.replaceChildren(img);nameBox.textContent=data.name;copy.textContent=[data.type_line,data.oracle_text].filter(Boolean).join(" · ");
+      } catch(error) { art.innerHTML='<p class="placeholder">Image unavailable right now. The deck list and price brief remain available offline.</p>'; copy.textContent="Scryfall could not return this card’s image or rules text."; }
+    }
+    function render() {
+      const query=search.value.trim().toLowerCase();root.replaceChildren();
+      for(const group of groups){const cards=group.cards.filter(([name])=>!query||name.toLowerCase().includes(query));if(!cards.length)continue;const section=document.createElement("section"),heading=document.createElement("h3"),label=document.createElement("span"),list=document.createElement("div");heading.className="group-title";const quantity=cards.reduce((total,[name])=>{const match=name.match(/ ×(\d+)$/);return total+(match?Number(match[1]):1);},0);label.textContent=quantity+(quantity===1?" card":" cards");heading.append(group.title,label);list.className="list";
+        for(const [name,status] of cards){const row=document.createElement("div"),button=document.createElement("button"),tag=document.createElement("span");row.className="card-row"+(status==="owned"?" owned":"");button.type="button";button.className="card-name";button.textContent=name;button.addEventListener("mouseenter",()=>showPreview(name));button.addEventListener("focus",()=>showPreview(name));button.addEventListener("click",()=>showPreview(name));tag.className="tag";tag.textContent=status==="owned"?"owned":"buy";row.append(button,tag);list.append(row);}
+        section.append(heading,list);root.append(section);
+      }
+    }
+    search.addEventListener("input",render);render();
+  </script>
+</body>
+</html>
