@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build with Claude — install magic-deck-api-builder in Claude or Codex</title>
+<meta name="description" content="The actual public skill repo that builds, validates, prices, and presents budget Commander decks — installable in both Claude Code and Codex. Install it and run it on your own commander.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070d; --bg-paper:#09090f; --panel:rgba(255,255,255,.024); --line:rgba(255,255,255,.1);
+  --ink:#ededed; --muted:#c7c7cc; --dim:#8c8c94;
+  --orange:#e04c28; --orange-light:#ff7940; --orange-pale:#ffc1ae;
+  --sans:"Inter",-apple-system,"system-ui",sans-serif;
+  --mono:"DM Mono",SFMono-Regular,Consolas,monospace;
+  --container:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);padding-top:68px}
+a{color:var(--orange-light);text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.cb-section{padding:92px 0}
+.cb-section--paper{background:var(--bg-paper)}
+.cb-eyebrow{font-family:var(--mono);font-size:.69rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-light);margin:0 0 12px}
+
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:68px;background:rgba(7,7,13,.88);backdrop-filter:blur(16px);display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px}
+.nav-brand{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:700;font-size:.82rem;color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
+.nav-brand .mark{display:block;width:22px;height:22px;object-fit:contain}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:var(--sans);font-size:.76rem;color:rgba(237,237,239,.52)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{padding:9px 20px;border-radius:7px;font-family:var(--sans);font-size:.85rem;font-weight:600;background:rgba(224,76,40,.12);color:var(--orange-light)!important;white-space:nowrap}
+.nav-cta:hover{background:rgba(224,76,40,.2)}
+
+.cb-hero{padding:78px 0 90px}
+.cb-hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:46px 68px;align-items:start}
+.cb-title{font-family:var(--sans);font-weight:800;letter-spacing:-.05em;line-height:.98;font-size:clamp(2rem,4.4vw,3.3rem);margin:0 0 20px}
+.cb-title mark{background:none;color:var(--orange-light)}
+.cb-lede{font-size:1.06rem;color:var(--muted);line-height:1.7;margin:0 0 26px;max-width:520px}
+.cb-lede .hi{color:var(--orange-light);font-family:var(--mono)}
+.cb-actions{display:flex;gap:12px;flex-wrap:wrap}
+.cb-button{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:.92rem}
+.cb-button--primary{background:var(--orange);color:#fff!important}
+.cb-button--primary:hover{background:#c9401f}
+.cb-button--ghost{background:transparent;border:1px solid var(--line);color:var(--ink)!important}
+.cb-button--ghost:hover{border-color:var(--orange-light);color:var(--orange-light)!important}
+.cb-hero-note{margin:16px 0 0;color:#6b6b74;font-size:.8rem}
+
+.cb-info-card{border:1px solid rgba(255,121,64,.5);border-radius:13px;padding:22px}
+.cb-info-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cb-status{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-pale);display:flex;align-items:center;gap:6px}
+.cb-status .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.cb-domain{font-family:var(--mono);font-size:.67rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.cb-info-card h3{margin:0 0 14px;font-size:1.05rem;font-weight:600;letter-spacing:-.01em;color:var(--ink);font-family:var(--mono)}
+.cb-info-card p.desc{margin:0 0 14px;color:var(--muted);font-size:.86rem;line-height:1.55}
+.cb-info-rows{margin:0;display:grid;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.cb-info-rows>div{display:grid;grid-template-columns:120px 1fr;gap:10px}
+.cb-info-rows dt{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.03em;color:var(--dim);font-weight:500;margin:0;padding-top:1px}
+.cb-info-rows dd{margin:0;font-size:.82rem;color:var(--muted)}
+.cb-info-footer{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.cb-info-links{display:flex;gap:16px;flex-wrap:wrap}
+.cb-info-links a{font-size:.78rem;font-weight:800;color:var(--orange-light)}
+
+.cb-section-head{max-width:680px;margin:0 auto 34px;text-align:center}
+.cb-section-head .cb-eyebrow{justify-content:center}
+.cb-section-head h2{font-size:clamp(1.4rem,2.8vw,1.9rem);letter-spacing:-.03em;margin:0 0 10px;color:var(--ink)}
+.cb-section-head p{color:var(--muted);margin:0;font-size:.98rem;line-height:1.6}
+
+/* repo tree */
+.tree{border:1px solid var(--line);border-radius:13px;background:var(--panel);padding:6px 0}
+.tree-row{display:grid;grid-template-columns:280px 1fr;gap:14px;align-items:baseline;padding:11px 20px;border-top:1px solid var(--line)}
+.tree-row:first-child{border-top:none}
+.tree-row .path{font-family:var(--mono);font-size:.82rem;color:var(--orange-light);white-space:nowrap}
+.tree-row .path.dim{color:var(--muted);font-weight:400}
+.tree-row .desc{color:var(--muted);font-size:.85rem;line-height:1.5}
+.tree-row .desc code{font-family:var(--mono);font-size:.77rem;color:var(--ink);background:rgba(255,255,255,.06);padding:1px 5px;border-radius:4px}
+
+/* platform / harness hairline grid */
+.cb-platform-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.cb-platform-card{padding:24px;background:#111118;display:flex;flex-direction:column;gap:10px}
+.cb-platform-card .kind{font-family:var(--mono);font-size:.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:center;gap:7px}
+.cb-platform-card .kind .dot{width:7px;height:7px;border-radius:50%;background:var(--orange-light)}
+.cb-platform-card h4{margin:0;font-size:1.08rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.cb-platform-card code{display:block;font-family:var(--mono);font-size:.78rem;color:var(--orange-light);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:6px;padding:9px 11px;overflow-x:auto;white-space:pre}
+.cb-platform-card p{margin:0;font-size:.85rem;color:var(--muted);line-height:1.55}
+
+blockquote{margin:0;padding:22px 26px;border-left:3px solid var(--orange);border-radius:0 10px 10px 0;background:rgba(224,76,40,.06);color:var(--ink);font-size:1rem;line-height:1.65;font-style:italic}
+blockquote cite{display:block;margin-top:12px;color:var(--dim);font-style:normal;font-size:.8rem;font-family:var(--mono)}
+
+/* how-it-works hairline grid */
+.cb-how-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.cb-how-step{padding:22px 20px;background:var(--bg)}
+.cb-section--paper .cb-how-step{background:var(--bg-paper)}
+.cb-how-step .n{display:block;font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.08em;color:var(--orange);margin-bottom:14px;text-transform:uppercase}
+.cb-how-step h4{margin:0 0 8px;font-size:.98rem;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.cb-how-step p{margin:0;font-size:.8rem;color:var(--muted);line-height:1.5}
+.cb-how-step code{font-family:var(--mono);font-size:.74rem;color:var(--orange-light);background:rgba(255,121,64,.1);padding:1px 5px;border-radius:4px}
+
+/* terminal-style demo panel */
+.demo-panel{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}
+.demo-bar{padding:11px 18px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.76rem;color:var(--dim)}
+.demo-body{padding:22px 24px;font-family:var(--mono);font-size:.85rem;line-height:1.8;color:var(--muted);overflow-x:auto}
+.demo-body .p{color:var(--ink)}
+.demo-body .p::before{content:"$ ";color:var(--orange-light)}
+.demo-body .cmt{color:var(--dim)}
+.demo-body .ok{color:var(--orange-light)}
+.demo-body .warn{color:#ff6a52}
+
+.rule-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.rule{padding:20px 22px;border:1px solid var(--line);border-radius:13px;background:var(--panel);font-size:.86rem;color:var(--muted);line-height:1.55}
+.rule b{display:block;color:var(--ink);font-size:.92rem;margin-bottom:6px}
+
+.links-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;justify-content:center}
+.links-row a{font-family:var(--mono);font-size:.8rem;padding:9px 14px;border:1px solid var(--line);border-radius:7px;color:var(--muted)}
+.links-row a:hover{border-color:var(--orange-light);color:var(--orange-light)}
+
+.cb-boundary{display:grid;grid-template-columns:1fr 2fr;gap:20px;padding:27px 30px;background:rgba(224,76,40,.09);border-left:3px solid var(--orange);border-radius:0 10px 10px 0}
+.cb-boundary h3{margin:0;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink);line-height:1.3}
+.cb-boundary p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.6}
+
+.cta-card{padding:30px 32px;border:1px solid var(--line);border-radius:13px;background:var(--panel);text-align:center}
+.cta-card h4{margin:0 0 8px;color:var(--ink);font-size:1.3rem;letter-spacing:-.02em}
+.cta-card p{color:var(--muted);margin:0 auto 20px;font-size:.94rem;max-width:520px;line-height:1.6}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+footer.cb-footer{background:var(--bg);padding:40px 0 28px;text-align:left;color:var(--ink);border-top:1px solid var(--line)}
+footer.cb-footer .brand{font-weight:700;margin-bottom:14px;font-size:.95rem}
+footer.cb-footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
+footer.cb-footer .links a{color:var(--muted)}
+footer.cb-footer .links a:hover{color:var(--orange-light)}
+footer.cb-footer .copyright{color:#6b6b74;font-size:.78rem}
+
+@media(max-width:860px){
+  .cb-hero-grid{grid-template-columns:1fr}
+  .cb-platform-grid{grid-template-columns:1fr}
+  .cb-how-grid{grid-template-columns:repeat(2,1fr)}
+  .cb-boundary{grid-template-columns:1fr}
+  .tree-row{grid-template-columns:1fr}
+}
+@media(max-width:640px){ .nav-links{display:none} .cb-how-grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="mtg-cookbook.html"><img class="mark" src="data:image/png;base64,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" alt="57">MTG Cookbook</a>
+    <div class="nav-links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="for-stores.html">For stores</a>
+      <a href="build-with-claude.html" class="active">Build your own</a>
+      <a href="my-decks.html">My decks</a>
+    </div>
+    <a class="nav-cta" href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">View on GitHub →</a>
+  </div>
+</header>
+
+<section class="cb-hero">
+  <div class="container cb-hero-grid">
+    <div>
+      <p class="cb-eyebrow">For the MTG + AI community</p>
+      <h1 class="cb-title">Give it a brief. It builds, validates, prices, and shows its <mark>work</mark>.</h1>
+      <p class="cb-lede"><span class="hi">magic-deck-api-builder</span> is the real, public skill repo that built every deck on this site — a native Claude Skill that also ships a Codex agent adapter, so it installs into either harness. It's not a demo of the idea — it's the actual thing.</p>
+      <div class="cb-actions">
+        <a class="cb-button cb-button--primary" href="#repo">See what's inside <span aria-hidden="true">→</span></a>
+        <a class="cb-button cb-button--ghost" href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">View on GitHub</a>
+      </div>
+      <p class="cb-hero-note">Runs fully offline for building and validating. Only the live-pricing step needs a CardTrader account.</p>
+    </div>
+    <div class="cb-info-card">
+      <div class="cb-info-top">
+        <span class="cb-status"><span class="dot"></span>Public repo</span>
+        <span class="cb-domain">Claude Skill</span>
+      </div>
+      <h3>gera3d/mtg-cookbook</h3>
+      <p class="desc">One SKILL.md, two deterministic scripts, two policy references, two example inputs. This is the exact code that priced every deck linked from <a href="my-decks.html">my decks</a>.</p>
+      <dl class="cb-info-rows">
+        <div><dt>Install path</dt><dd>~/.claude/skills/ or ~/.codex/skills/</dd></div>
+        <div><dt>Runs offline</dt><dd>build + validate — no account needed</dd></div>
+        <div><dt>Needs account</dt><dd>only for live CardTrader pricing</dd></div>
+      </dl>
+      <div class="cb-info-footer">
+        <div class="cb-info-links">
+          <a href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+          <a href="#repo">See what's inside ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper" id="repo">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">what's actually in the repo</p>
+      <h2>github.com/gera3d/mtg-cookbook</h2>
+      <p>Not a wrapper around a prompt — nine real files split across a Skill manifest, two deterministic scripts, two policy references, and two example inputs.</p>
+    </div>
+    <div class="tree">
+      <div class="tree-row"><span class="path">README.md</span><span class="desc">The cookbook's front door: what the Skill does, the install command, and what a well-formed deck brief has to specify.</span></div>
+      <div class="tree-row"><span class="path">recipes/build-a-budget-commander-deck.md</span><span class="desc">The full workflow written out as a recipe — brief → role-based build → validation → live quote → gallery → purchase gate — with a deliverable checklist at the end.</span></div>
+      <div class="tree-row"><span class="path">skills/magic-deck-api-builder/<span class="path dim">SKILL.md</span></span><span class="desc">The Skill manifest itself — name, trigger description, and the instructions Claude reads before acting. This is the file Claude Code loads directly.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> agents/openai.yaml</span><span class="desc">The Codex-side adapter: registers the same Skill as a <code>$magic-deck-api-builder</code> prompt shortcut inside Codex's agent interface.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> scripts/validate_commander.py</span><span class="desc">Offline, deterministic, no network calls: parses a decklist and checks exact 100-card count, singleton rules, and commander count. Fails loudly with a JSON error, not a guess.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> scripts/render_gallery.py</span><span class="desc">Turns normalized deck JSON into the standalone hover-card gallery pages — the same generator behind every deck page linked from <a href="my-decks.html">my decks</a>.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> references/card-data-and-pricing.md</span><span class="desc">The rule that keeps card-rules truth (Scryfall) and marketplace price/stock (a named adapter) as two separate sources — plus the exact JSON shape a normalized quote has to match.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> references/cart-and-purchase-gates.md</span><span class="desc">The purchase boundary: what counts as safe research vs. a live state change, and the exact facts that must be re-confirmed immediately before any payment action.</span></div>
+      <div class="tree-row"><span class="path"><span class="path dim">↳</span> assets/*.example</span><span class="desc">A minimal example decklist and normalized deck-data JSON — the portable schema both scripts expect, so you can see the input shape before writing your own.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">where to install it</p>
+      <h2>One repo, both harnesses</h2>
+      <p>SKILL.md is Claude's native format. The Codex adapter registers the same Skill as a prompt shortcut — no fork, no rewrite.</p>
+    </div>
+    <div class="cb-platform-grid">
+      <div class="cb-platform-card">
+        <div class="kind"><span class="dot"></span>Claude Code</div>
+        <h4>Native Skill format</h4>
+        <code>git clone https://github.com/gera3d/mtg-cookbook.git
+cp -R mtg-cookbook/skills/magic-deck-api-builder ~/.claude/skills/</code>
+        <p>No adapter needed. Restart Claude Code, then run <code style="display:inline;padding:0;background:none;border:none;color:var(--orange-light)">/skills</code> to confirm it loaded.</p>
+      </div>
+      <div class="cb-platform-card">
+        <div class="kind"><span class="dot"></span>Codex</div>
+        <h4>Agent adapter</h4>
+        <code>git clone https://github.com/gera3d/mtg-cookbook.git
+cp -R mtg-cookbook/skills/magic-deck-api-builder ~/.codex/skills/</code>
+        <p><code style="display:inline;padding:0;background:none;border:none;color:var(--orange-light)">agents/openai.yaml</code> registers the same Skill as <code style="display:inline;padding:0;background:none;border:none;color:var(--orange-light)">$magic-deck-api-builder</code> inside Codex.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">before you run it</p>
+      <h2>You'll need a CardTrader account and an API key</h2>
+      <p>The role-based build and validation script work fully offline. The live-pricing step is the one that talks to the outside world — to quote real inventory instead of guessing, your harness needs a CardTrader account and an API key.</p>
+    </div>
+    <aside class="cb-boundary">
+      <h3>Keeping that key safe is its own topic.</h3>
+      <p>Where it's stored, how it's scoped, how it's rotated — and it's out of scope for this article on purpose. The one rule that does hold here: the credential lives in your harness's own secret storage, never in the skill files themselves. If enough people ask how to do the secrets side of this properly, I'll write that guide next.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">step zero</p>
+      <h2>What a good brief looks like</h2>
+      <p>"Cheapest" alone isn't a spec — it can quietly mean non-English cards, poor condition, a different printing, or a total that excludes fees. A brief that actually constrains the build looks like this, straight from the skill's own README:</p>
+    </div>
+    <blockquote>
+      Build a budget Commander deck around this commander. I already own the commander and basic lands. Keep listings English only and in at least lightly played condition. Use CardTrader Zero if possible, cap the cards at $35 before checkout fees, and show me a gallery plus the exact checkout quote before touching a cart.
+      <cite>— mtg-cookbook/README.md</cite>
+    </blockquote>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">what it actually does</p>
+      <h2>Five steps, in order, every time</h2>
+      <p>Nothing here is a black box — this is the literal sequence the skill follows for every deck on this site.</p>
+    </div>
+    <div class="cb-how-grid">
+      <div class="cb-how-step"><span class="n">01</span><h4>Build by role</h4><p>Mana, card flow, interaction, primary plan, finishers — built role by role, win pattern explained before anything gets priced.</p></div>
+      <div class="cb-how-step"><span class="n">02</span><h4>Validate</h4><p>Runs <code>validate_commander.py</code> for an exact 100-card / singleton check. Legality verified separately against live card data.</p></div>
+      <div class="cb-how-step"><span class="n">03</span><h4>Price live</h4><p>Printing, language, condition, seller, price, timestamp. Subtotal, fees, shipping, and tax stay separate — never one "price."</p></div>
+      <div class="cb-how-step"><span class="n">04</span><h4>Render gallery</h4><p><code>render_gallery.py</code> turns the data into a page: hover-card art, exact decklist, plain-language strength rating.</p></div>
+      <div class="cb-how-step"><span class="n">05</span><h4>Stop at the gate</h4><p>Building a list and a quote is safe prep. Touching a cart or paying needs a fresh, explicit confirmation — every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">what a run looks like</p>
+      <h2>A real brief, start to finish</h2>
+      <p>This mirrors the actual run that produced Kratos, God of War's $14.99 batch — one of the nine batches purchased for real, tracked in <a href="my-decks.html">my decks</a>.</p>
+    </div>
+    <div class="demo-panel">
+      <div class="demo-bar">claude — magic-deck-api-builder</div>
+      <div class="demo-body">
+        <div class="p">claude "build a budget deck around Kratos, God of War — I own the<br>&nbsp;&nbsp;commander and basics, English only, at least lightly played,<br>&nbsp;&nbsp;CardTrader Zero, cap at $20 before fees"</div>
+        <div class="cmt"># role map</div>
+        <div>mana · card flow · interaction · primary plan · finishers</div>
+        <div class="cmt"># deterministic check</div>
+        <div class="ok">validate_commander.py ....... 100/100 cards, singleton OK</div>
+        <div class="cmt"># live pricing pass</div>
+        <div>pricing 63 cards vs. CardTrader Zero (English, ≥ lightly played)</div>
+        <div class="ok">article subtotal: $14.99   quoted 2026-08-04</div>
+        <div>fees / shipping / tax: not yet quoted — separate from subtotal</div>
+        <div class="cmt"># gallery</div>
+        <div>written → kratos-god-of-war-ultra-budget-gallery.html</div>
+        <div class="warn">STOP — no cart created. confirm before checkout.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper" id="ground-rules">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">ground rules</p>
+      <h2>What the skill won't quietly do</h2>
+    </div>
+    <div class="rule-grid">
+      <div class="rule"><b>Rules ≠ prices</b>Card facts and legality come from live card data. Availability and cost come from live marketplace inventory. Never one source pretending to be both.</div>
+      <div class="rule"><b>A scan isn't checkout</b>Article subtotal, service fees, shipping, and tax are always reported as separate numbers, never folded into one "price."</div>
+      <div class="rule"><b>Language and condition are hard filters</b>"English only" means English only — never silently waived because inventory is thin.</div>
+      <div class="rule"><b>No secrets in the skill</b>API credentials, cookies, addresses, and payment details stay in your harness's own integrations, never in the skill files.</div>
+      <div class="rule"><b>No automatic charge</b>You see a fresh, exact final total and explicitly confirm before any payment — every time, not just the first time.</div>
+    </div>
+    <div class="links-row">
+      <a href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">github.com/gera3d/mtg-cookbook ↗</a>
+      <a href="https://github.com/gera3d/mtg-cookbook/blob/main/README.md" target="_blank" rel="noreferrer">README.md ↗</a>
+      <a href="https://github.com/gera3d/mtg-cookbook/blob/main/skills/magic-deck-api-builder/SKILL.md" target="_blank" rel="noreferrer">SKILL.md ↗</a>
+      <a href="https://github.com/gera3d/mtg-cookbook/blob/main/recipes/build-a-budget-commander-deck.md" target="_blank" rel="noreferrer">Full recipe ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <div class="cta-card">
+      <h4>See it built, or build your own</h4>
+      <p>Every batch in my deck log came out of this exact loop. Browse the results, or clone the repo and drop it into Claude Code or Codex.</p>
+      <div class="cta-row">
+        <a class="cb-button cb-button--primary" href="my-decks.html">See the batches</a>
+        <a class="cb-button cb-button--ghost" href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">View the repo</a>
+        <a class="cb-button cb-button--ghost" href="mailto:gera3d@gmail.com?subject=magic-deck-api-builder%20skill">Ask me about it</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="cb-footer">
+  <div class="container">
+    <div class="brand">The Magic the Gathering Cookbook</div>
+    <div class="links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="for-stores.html">For stores</a>
+      <a href="my-decks.html">My decks</a>
+      <a href="https://github.com/gera3d/mtg-cookbook" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="mailto:gera3d@gmail.com">gera3d@gmail.com</a>
+    </div>
+    <div class="copyright">magic-deck-api-builder is a real Skill, not marketing copy — one repo, installable in both Claude Code and Codex. © 2026 Gera.</div>
+  </div>
+</footer>
+
+</body>
+</html>
