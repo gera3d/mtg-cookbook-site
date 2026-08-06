@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For game stores — proof of demand for your bulk-bin commons</title>
+<meta name="description" content="A live case study: 16 AI-priced Commander decks sourced across 40+ independent CardTrader Zero sellers, 9 turned into real orders. What that means if you run a store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070d; --bg-paper:#09090f; --panel:rgba(255,255,255,.024); --line:rgba(255,255,255,.1);
+  --ink:#ededed; --muted:#c7c7cc; --dim:#8c8c94;
+  --orange:#e04c28; --orange-light:#ff7940; --orange-pale:#ffc1ae;
+  --sans:"Inter",-apple-system,"system-ui",sans-serif;
+  --mono:"DM Mono",SFMono-Regular,Consolas,monospace;
+  --container:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);padding-top:68px}
+a{color:var(--orange-light);text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.cb-section{padding:92px 0}
+.cb-section--paper{background:var(--bg-paper)}
+.cb-eyebrow{font-family:var(--mono);font-size:.69rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-light);margin:0 0 12px}
+
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:68px;background:rgba(7,7,13,.88);backdrop-filter:blur(16px);display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px}
+.nav-brand{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:700;font-size:.82rem;color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
+.nav-brand .mark{display:block;width:22px;height:22px;object-fit:contain}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:var(--sans);font-size:.76rem;color:rgba(237,237,239,.52)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{padding:9px 20px;border-radius:7px;font-family:var(--sans);font-size:.85rem;font-weight:600;background:rgba(224,76,40,.12);color:var(--orange-light)!important;white-space:nowrap}
+.nav-cta:hover{background:rgba(224,76,40,.2)}
+
+.cb-hero{padding:78px 0 90px}
+.cb-hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:46px 68px;align-items:start}
+.cb-title{font-family:var(--sans);font-weight:800;letter-spacing:-.05em;line-height:.98;font-size:clamp(2rem,4.4vw,3.3rem);margin:0 0 20px}
+.cb-title mark{background:none;color:var(--orange-light)}
+.cb-lede{font-size:1.06rem;color:var(--muted);line-height:1.7;margin:0 0 26px;max-width:520px}
+.cb-actions{display:flex;gap:12px;flex-wrap:wrap}
+.cb-button{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:.92rem}
+.cb-button--primary{background:var(--orange);color:#fff!important}
+.cb-button--primary:hover{background:#c9401f}
+.cb-button--ghost{background:transparent;border:1px solid var(--line);color:var(--ink)!important}
+.cb-button--ghost:hover{border-color:var(--orange-light);color:var(--orange-light)!important}
+.cb-hero-note{margin:16px 0 0;color:#6b6b74;font-size:.8rem}
+
+.cb-info-card{border:1px solid rgba(255,121,64,.5);border-radius:13px;padding:22px}
+.cb-info-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cb-status{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-pale);display:flex;align-items:center;gap:6px}
+.cb-status .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.cb-domain{font-family:var(--mono);font-size:.67rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.cb-info-card h3{margin:0 0 14px;font-size:1.14rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.cb-info-rows{margin:0;display:grid;gap:12px}
+.cb-info-rows>div{display:grid;grid-template-columns:96px 1fr;gap:10px}
+.cb-info-rows dt{font-family:var(--mono);font-size:.66rem;text-transform:uppercase;letter-spacing:.03em;color:var(--orange-light);font-weight:500;margin:0;padding-top:1px}
+.cb-info-rows dd{margin:0;font-size:.86rem;color:var(--muted);line-height:1.5}
+.cb-info-note{margin:16px 0 0;color:var(--dim);font-size:.8rem;line-height:1.55}
+.cb-info-footer{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.cb-info-footer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.cb-info-footer-top span:first-child{font-family:var(--mono);font-weight:600;font-size:.86rem;color:var(--ink)}
+.cb-info-footer-top .ver{font-family:var(--mono);font-size:.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:.04em}
+.cb-info-footer p{margin:0 0 12px;color:var(--muted);font-size:.8rem;line-height:1.55}
+.cb-info-links{display:flex;gap:16px;flex-wrap:wrap}
+.cb-info-links a{font-size:.78rem;font-weight:800;color:var(--orange-light)}
+
+.cb-section-head{max-width:640px;margin:0 auto 34px;text-align:center}
+.cb-section-head .cb-eyebrow{justify-content:center}
+.cb-section-head h2{font-size:clamp(1.4rem,2.8vw,1.9rem);letter-spacing:-.03em;margin:0 0 10px;color:var(--ink)}
+.cb-section-head p{color:var(--muted);margin:0;font-size:.98rem;line-height:1.6}
+
+.cb-launch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cb-launch-card{padding:23px;border-radius:13px;border:1px solid var(--line);background:var(--panel)}
+.cb-launch-card--live{background:transparent;border-color:rgba(255,121,64,.5)}
+.cb-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cb-launch-card:not(.cb-launch-card--live) .cb-status{color:var(--dim)}
+.cb-launch-card:not(.cb-launch-card--live) .cb-status .dot{background:var(--dim)}
+.cb-launch-card h3{margin:0 0 8px;font-size:1.14rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+.cb-launch-card p{margin:0;font-size:.86rem;color:var(--muted);line-height:1.58}
+.cb-launch-card .after{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:.78rem;color:var(--dim)}
+
+.checklist{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:9px}
+.checklist li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.94rem;line-height:1.5}
+.checklist li::before{content:"✓";color:var(--orange-light);font-family:var(--mono);font-weight:700;flex:none}
+
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fit-card{padding:22px 24px;border:1px solid var(--line);border-radius:13px;background:var(--panel)}
+.fit-card.good{border-color:rgba(255,121,64,.4)}
+.fit-card h4{margin:0 0 12px;font-size:.85rem;letter-spacing:.06em;font-family:var(--mono);text-transform:uppercase}
+.fit-card.good h4{color:var(--orange-light)}
+.fit-card.bad h4{color:var(--dim)}
+.fit-card ul{margin:0;padding-left:18px;color:var(--muted);font-size:.9rem;line-height:1.7}
+.fit-card li{margin-bottom:4px}
+
+.cb-boundary{display:grid;grid-template-columns:1fr 2fr;gap:20px;padding:27px 30px;background:rgba(224,76,40,.09);border-left:3px solid var(--orange);border-radius:0 10px 10px 0}
+.cb-boundary h3{margin:0;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink);line-height:1.3}
+.cb-boundary p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.6}
+
+.cta-card{padding:30px 32px;border:1px solid var(--line);border-radius:13px;background:var(--panel);text-align:center}
+.cta-card h4{margin:0 0 8px;color:var(--ink);font-size:1.3rem;letter-spacing:-.02em}
+.cta-card p{color:var(--muted);margin:0 auto 20px;font-size:.94rem;max-width:520px;line-height:1.6}
+.source-note{margin-top:16px;color:var(--dim);font-size:.78rem;text-align:center}
+
+footer.cb-footer{background:var(--bg);padding:40px 0 28px;text-align:left;color:var(--ink);border-top:1px solid var(--line)}
+footer.cb-footer .brand{font-weight:700;margin-bottom:14px;font-size:.95rem}
+footer.cb-footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
+footer.cb-footer .links a{color:var(--muted)}
+footer.cb-footer .links a:hover{color:var(--orange-light)}
+footer.cb-footer .copyright{color:#6b6b74;font-size:.78rem}
+
+@media(max-width:860px){
+  .cb-hero-grid{grid-template-columns:1fr}
+  .cb-launch-grid{grid-template-columns:1fr}
+  .fit-grid{grid-template-columns:1fr}
+  .cb-boundary{grid-template-columns:1fr}
+}
+@media(max-width:640px){ .nav-links{display:none} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="mtg-cookbook.html"><img class="mark" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAABMCAYAAAAcLPsJAAAQ30lEQVR4nNWca6xtV1XHf3vvc+5tuVEb8YGNkZuoH4hoiChB4xeJGpXgI0YxGh/4SCSiiMb3o1gFfLWIjypoMEBUUjU+gk9EbBCpojG1Nj4qRZsIKligtLXt2XsvP8z13+u3xlnnHPZqe+91JDv7reaca8wxx+M/xpxrL7quO0ejrn8BrIAtsAQWwLp/PwA2/eugb7vo23Zq3/V9lv0rY690D7+nb74v+s/p6/ul37a0Wfb3XPWfN7q+FV8Lte/6a5mv773Q9YVekc9Gc899F8Bi0XXdoRhdMhYSapyOFIYXmlDIQtnoe6UI5kATSP+FmK8TT5ulfjtkWPzcL3xOLVRdzGXpY6H7WmRAaZf5rKxZFmgmFKFEyzZq675eUWtc1U6vehXMQuNu9arasyj9tvpszd4y5nOl6x4v71nQKJG1Om0OGC+8573T3APGGpFVsGlaG1C7RRnQKxjN3er3TC4TWTNemFw7KpO1VkWjM15X+lszbWnVBaDxTB57248XJamm7z6jhYqPPOw7nwe+B/gwDeab1ZXzYJM3KP3R71PjnDT2fwC/AXwh8G3AhQnePHboHuCd4mvJyeQ25iefzwEf37c9Au7U9b8Efgh4CIaVikpvgI8FvvSUm18Ouge4Hfhy4PF79Lu2fz3adDXwVH3/AYaYsozPialugJseAyYeKR0yuKkrjd4E/AVNe9fA1pErPuk24C2Xhb2zqZr6lUDfz9hNdEuEr2ja+gDwzMvF4f8zejHwVpqWQi/LGhVjXkfAay81h2fQaUHmclAHvIIxBO3oNRUGPBeocERbhSuJrjTT/0bgHYyD/BIGnAjNydq/3gm89NLxeCZdSUK9hQbxkhA4sVhHqMkGnFmsgV++1NyeQVeKYF8CPMxYIeM6D5YMTjZSd2r6NuAXLhmrp5OzsctJP09DR/GjR4zrFiT6J11NBSq5dQdcB/zvpeR6gpLpXH2Z+QC4EXiQQVYrGo5OvWERocIQpGrx4j7ghkvE8EkULbjc5v8c4D8ZNHOra7u6yUL11JArPfn+BOCfmKcpDwK39p+d33+g1AFvAH4JeAbwVcDjZvABrabx5Jl9/x74NJr/dFHJ81kAm0XXdTH9kOuWWY0LtHrAK2cw81bg2cC7GKML1yh9f+PRXLPPcqXKZUuP45opDOb5vbSC0Rx6JvDnDLKZKm1ugNWi67rzYmKrRja5FfBRwN8BHzKDoS8G/oRB+12hdymu7iDAcUGh9lOVeS9CFmgFXATeDFwzg/+XA99Oi/jhxfXc8LOgj/6UHzcMmDVqvgX+G/jWGQwBvBr4XNqCRJiBby587xjjeNlwrete9CXj5MVC3vZjXUXT0Gtm8H4vLTg93N/jsP/d9Va/ti7GTlXwz2tyRzTAe+cMxj4I+C3g34DvoPnocxyvxLtIbvOFYcFdMHdlf8mwGDbRLfApNF88h14M3M24iG73462fBX3pL0yYwWhDSoKo3U/PZA5aoLu+Z/IPaIGnBj9X1qvfNVa1wLelTTR/Rau//uBMft9MK4VGPoabJ1lSZ01xcDIC2JTPvwrcMZNJ02cAv98zfZGxdiGeXEetcM/7UeY1kz0AvqS/1xz6CRp6qVsrU748+1fbBKo0rIx7Yw0G5/x0Wv77aNGGFl3fRDMva6iDAhPXvI+WIJst7Y+hRewnzODplcDzGTJOy8db0se2c6zG1cFnIAeNTOR2GhJ4tGgF/BHwLTT4ZlMObSf6VBDufaWrgOcyT6AP0RKebJG4CG1LdjzI56XzfJf+VmoUsLvQ9/uB757B7Fn0YzTBXtN/rwWf/BZBxjV4x3NJC4JPpWnaHLoe+HfGQTzj5x5TSdKWPvrb3FeMhWgNsPAB/hq4eSbTZ03oeTTBuAZhyOfkITwZa1+goYw5dAet5Jmt8inrtSuypi7pA1U9jdKV7ym4HDLe73+ABoofC7qOFmA2DJOrhzISoLZo062f2BfRcPEc+uET7pf3pT7Xbe81vU91EIgDdnbjCAtjU/gb4DdnMn8WXQ88ibFG5t1lyvASrXk8bTNuDt0MvI4mh/hTm3sNmLaiXUyqpy+ihXWV0snHaaBlGS+aOYGz6KNp/tW+1IGoBqhkT98APHHG/Y5oC2lYafM2AjIfVsAVsHGn0FQh2KtV08x/5bHbJHwOLeA4h69FmRRYzgGfRHMdc+gGhuCUedYIHxdT/Wi2VIDxcUg04FS0cwReq++aVhPY0ATwobT0dk7hpdIK+Bpa8HiQ4VRfnewC+GBagJtDdwA/xZCCLhmfIHRFysGyBqwttKOU59QwDfIek9/ltRoIBtxqTYbhbNY54Ktp54x8/mkfuh/4VFrdICafIk/oAPh8Wm1iDj0b+D2ENRlDqepLLdRa1Vs5clUyAvBvrhQZxsS5P0TbLbgXeA+tVnAR+Ob95rmjC8BT+s8+Xejo+3HMN/s/BN7IeD7eBel0zfgYhkPQ0eJjPtWYbGpQp6xewTpJ90tgez8t7XvWzIl/NmNLcPZ3gQby51b0n0dTAAfjWunyweNaE6kyPKilNxcxrJW+nurVSW0cVCoo/zMaDtyXnkzzmbVwvgQ+Hfi6GWNCs6L/Yhx4nE3CcegUV7hSGyvU0bIMhi5mJYIHbRoHahO/6lqmnxmwi9kAr6IFnX3oibQc3uYG8OHA9+05VujtwI8w9s2GR8alU+bvYg4MicrKwciYrx5a2zAW4LJ8dpsw59VFY/8P7WThPvQRNFDviSxo51WfvudYoRfRssIoSiyvKpchli07/XIiPMc9l85KsgLZJHMxw5gtcINyA5sO6ouuJWN7xwwhPE68JHOau4n3OuDXGbQwZlyfbPECOsPK6fNYpBVyHTO2aleB1ZqqK1kZqLoMM2mtNZ7bl3yfC8ALaZh4X3o/bVc1hSO7KNcPatmxKl/aRkN3Vm0AX0F/TOJQ1z0ojJHBYfkOY+E5ml61hxAqHQJPA75+Zv+bgLsYmzqM/WbNmNzGlrti7GO3MGwBZLUs3FqpiekeMmiv82QPbmat2WtaQnBxT0Ec0TDvluYGvmvP/qHbaFskFpZhpN1UBfzRRCtf5rlW303FfjUZsECmzltF8PFDFrShF7rpU4BP2EcSwLuB99LS338EPnPP/qGX0JITB9XwZnM3HDRZoPluv7ylj/7GW1OVmOrMHdHti3JtXdoYy34k8LLTZn0C3UV7dOca4AUz+kPLnF7PuNJm32hhOaGpyU0tKMU66T9zwFibDOphDJnqI4rW7OBUa0ANTudpweUT9xBE6Nb+fi+gbebtSx3wTTQIlRLh7hEd8Wq/aqSRMUKZY2RwgM79x6Sdy7tCY6iABnJBwzDL2VWYX9FKcj/D+NmjfegW2uGw587sfyMNH0dQ1taaVdZifD5bASuW3flTepwKxw+JpUZpFFBdRFyD3USOxFxNA+WfDHwBLVrPpTtph49f+gj6X8/xB5KnfOamXPMcN2oDY+2GYTF2kOqA4wKyBnuQKfDvtG1Fgzs/ucfET6ObgM8CPmdm/xfSP97IGNhnzkYCI99Y+kxtM1V/ugC6+gz9ujR0ZhWT9rP/8T3JzHKjJ+099Wl6G+08wB/P7P+Gvq+FUq2uYywkGMcWK4zdoWshDuwjU4bjSKAKs+b+ucFa3zsa/Hk06OW0ADMnOD0IfCetrGdTnwo41X/CACMt8Cnf68xyCeOH0/IerfOqOTOqPtU33TIA9UdKv03zh8+f2f9XgH/muG+svjBBKOSMKkoUpYpsqitAnzsLML4ykT1BZ6k21kiYNiUHhLn0L8BraAFmDt1N8+kPM47UVogpaOiikPG5q3Vp46wRt7PUjUnheLEhHfO+LK9AqgPa8/lz6R9pG4lfxjxMC61g8k6mt9rzch24trGi5TcrWfrbgnfBbUkzV58EOWBQ8wBaMxQ8Zq21A3cReV+6m1bF/zxarXQO3U4LbkYzVh7XNGoscbkTxvJwvWPBcCwpAt493m9NM9ifKpR4NaP+U8KbK9A3Al9B07K5fhTgaxl2FmqAscnXNLwiALdNu4OJ33OfWPTKT/jloisuNgNviNVymJHCirabug/9LPBrtGr8M/bsa3oFzR/DeEvHKWnV1pyHrYmANdmZ1FavzHn0Dx8GwK421eLJkTqm3doDMc6Z7/0AhXAX7Sz+tTzyP254D+0MVfhyha2eZXWZ03VgH42PG6jVuVBkZYy6hOF4uqNffITN+EADTF33b7U8NkWvpR1+eBrtIMPcQxCm64D3Ma6SLfTZMDG/OdBYsFEc/1+W++azT0Hu5JhVMAP15iELy9DDgsxN3qt+76ZtA99G2xt6Pa1alFW/hfmPEoVeTVsoB5vqS7PwNn27MweoqhyON24fmBl4tYH2GOX5iZu7EhUHXbdGfK4IxnhwRSv1+RCxkwj/J9Uh7RH4udH+Hlr1K39oYHOsuLPm9BFarJByPQLzbquDN/ptF+zTsZ4/jR/1by6chJHqi/2vQffTNtkeoD2F7TEOGbucnztFaGfRjTRriLmGauQPnyHvVNQs0r7XFmgZZMwIPePtwL+Ps+yggRj19kiyLQPjKR8ak6nQLClf6Ij2UMYNJwjtNLqVlnk9XH6vdWBHbGtWV15T+bzjh+HWFAzroJ36O186G4eaITgOpewGrNVTRVzUzqufMa8C/oH9/pzrWTR8W58Z9WStKJ3a5ZprAs4ojc2N0WOVh6XNzj3WXNg7ATD+vz5jVpsU6lPPFxn/pa/HyqQ2NDexj7beDPwVx7XSgrJQnMPXEqatzjl+DdzeEAzK8HZUY6R/NB2Or7C3ajNIthScTaVWuVU/a3f9zZPrGLa8FzRt/VPas6SnUc6svr3/bkuKQDKucbejfZTFVBfB8cMR3oHKWr6mx6nJbVHHpd4rnDAjDjq1j88emWz21vQ8n3UdY5A9RT/OcJTcC5ixDJ9sYXYPJwUnW5xryFmgFeMSYOSzy8ysxhnEZgRjf1iv2ZysAQ56dhdONlwNc/B4C6dvxfwt7eSgYZmzHhgvXMWbtpR6MG+hcSoGNxqo97Emj7TFGG9drk8FABhH8QgoL2uLfdXmhH5pcx/wi5z8CPzLaP89YKHUTT0LzsK3+4llZRzUJtp4nvHi2G2ZbyvcSPLVIXs1rc3ovWrBqrwbLXgyq9K/Lty7aPiz0u/Qnrx2xcia798qDDL8i3Y5wIaf9F8zfujN/tj3oXwe+cEKNxwFLZi8GzY50tuPeQVdi6yVroyT+2+B36X9RUjoPuBHGSpgMVsfSq6LbzO1peX31JCz0NZ+JwcVx7pNLeZvbAIGx5mkkUF+y2c/u2lz2JQxQi5QWIs9dqf+76OVBEM30vacLDSTJ24lWTEU222N0ArNIccFnx1zDdWWiNpZbgtDkAzWlUaGJqZUrqIFZsqmZQ20kBMx7RYcGNa05/9fRSvGvIbxv5XVtNRCq7m+51lhk+Ge54/a2cI8Ty9QZLSsBRUYCyYrkkCQVfOpYjv/CMfwJNjWWp6+FqIzE0Oti7SHKO5gvLBTG5B2CVYOH1PyvYPFR4GG48KqluGFqfNa5eE0T8p5uoXktNQ+cWpB/NlQJ5M19vMknEQk8Gw1RnyXo254tnYaxk0FkwVj7XPtwyC/1gdWpb3LfrsExP+gVvFYKIzbLMKQT1lba20iNh9rZ119BxVrgvFvjfCmqX4OrLbA0JLjmmitrXxXZFEFvaYH/5lQ7ZSXz03lPRpjIfuvhTJJr6onuCuT9b/FEmpNoGJER1kLITzUfhaStdpB0mU9/+eUEwGjgMjLc3Q63P0fOUdZEffkLKwAAAAASUVORK5CYII=" alt="57">MTG Cookbook</a>
+    <div class="nav-links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="for-stores.html" class="active">For stores</a>
+      <a href="build-with-claude.html">Build your own</a>
+      <a href="my-decks.html">My decks</a>
+    </div>
+    <a class="nav-cta" href="mailto:gera3d@gmail.com?subject=Interested%20in%20an%20AI%20pricing%20tool%20for%20our%20store">Talk to Gera →</a>
+  </div>
+</header>
+
+<section class="cb-hero">
+  <div class="container cb-hero-grid">
+    <div>
+      <p class="cb-eyebrow">For game stores</p>
+      <h1 class="cb-title">Your $0.10–$0.50 bin has real buyers. Here's <mark>proof</mark>, not a pitch.</h1>
+      <p class="cb-lede">I built an AI skill that assembles real budget Commander decks and prices every card live — and it turned into actual orders sourced across 40+ independent sellers. That's the exact price band most stores have sitting in a bulk box.</p>
+      <div class="cb-actions">
+        <a class="cb-button cb-button--primary" href="my-decks.html">See the receipts <span aria-hidden="true">→</span></a>
+        <a class="cb-button cb-button--ghost" href="mailto:gera3d@gmail.com?subject=Interested%20in%20an%20AI%20pricing%20tool%20for%20our%20store&body=Store%20name%3A%0AWhat%27s%20sitting%20in%20your%20bulk%20bins%3A%0A">Email Gera</a>
+      </div>
+      <p class="cb-hero-note">No cart, wishlist, or order was created on any un-purchased batch referenced on this page.</p>
+    </div>
+    <div class="cb-info-card">
+      <div class="cb-info-top">
+        <span class="cb-status"><span class="dot"></span>Live data</span>
+        <span class="cb-domain">Case study</span>
+      </div>
+      <h3>demand-check --zero</h3>
+      <dl class="cb-info-rows">
+        <div><dt>Batches priced</dt><dd>16, from a $9.87 floor to a $43.16 full build.</dd></div>
+        <div><dt>Batches bought</dt><dd>9 turned into actual CardTrader Zero orders.</dd></div>
+        <div><dt>Price band</dt><dd>$0.10–$0.50 commons and uncommons, per card.</dd></div>
+      </dl>
+      <p class="cb-info-note">60+ commons/uncommons per batch, sourced across 40+ independent sellers — the same price band most stores treat as dead stock.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">what this actually is</p>
+      <h2>Not a mockup. A real buying pattern.</h2>
+      <p>Nine commander decks, sixteen priced shopping lists, each needing 60-plus commons and uncommons sourced live. Nine of those sixteen turned into real purchases — <a href="my-decks.html">the receipts are public</a>.</p>
+    </div>
+    <div class="cb-launch-grid">
+      <div class="cb-launch-card cb-launch-card--live">
+        <div class="cb-card-top"><span class="cb-status"><span class="dot"></span>Proven now</span><span class="cb-domain">Case study</span></div>
+        <h3>The 16-batch demand proof</h3>
+        <p>Nine real commanders, priced live, with 9 turned into actual CardTrader Zero orders — sourced the same way your bulk bin would sell if priced and packaged the same way.</p>
+        <div class="after">See it: <a href="my-decks.html">my decks</a></div>
+      </div>
+      <div class="cb-launch-card">
+        <div class="cb-card-top"><span class="cb-status"><span class="dot"></span>Open to build</span><span class="cb-domain">Custom</span></div>
+        <h3>The same tool, aimed at your inventory</h3>
+        <p>Point the skill at your own stock instead of the open market, and it can build budget decks priced specifically against what's sitting in your store.</p>
+        <div class="after">Not built yet — ask below</div>
+      </div>
+      <div class="cb-launch-card">
+        <div class="cb-card-top"><span class="cb-status"><span class="dot"></span>Idea stage</span><span class="cb-domain">Marketing</span></div>
+        <h3>A store-branded deck series</h3>
+        <p>A recurring "here's what we'd build for $20" series, generated from your actual bins, as a reason for regulars to check back.</p>
+        <div class="after">Not built yet — ask below</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">the sequencing that matters</p>
+      <h2>Own your inventory record first. Then use Zero for reach.</h2>
+      <p>The skill behind this whole site runs on one hard rule: card-rules truth and marketplace pricing are two different sources, and they never get mashed together. The same discipline is worth applying to a store's own stock.</p>
+    </div>
+    <ul class="checklist" style="max-width:640px;margin-left:auto;margin-right:auto">
+      <li>Keep your own record of SKU, condition, and quantity — something you wouldn't lose access to if a platform relationship ever changed</li>
+      <li>Compute pricing from a rule (cost + margin, or live comp data), not hand-typed per listing</li>
+      <li>Zero then becomes an additive reach channel for the bottom of that inventory — the $0.10–$0.50 stock nobody wants to list one card at a time — not the only copy of your data</li>
+    </ul>
+    <p class="source-note">Zero mechanics — consolidated weekly shipment to one hub, free to start, 3,000+ active sellers — are from CardTrader's own seller page: <a href="https://www.cardtrader.com/en/pages/zero_sellers" target="_blank" rel="noreferrer">cardtrader.com/en/pages/zero_sellers</a>.</p>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper">
+  <div class="container">
+    <div class="cb-section-head">
+      <p class="cb-eyebrow">is this worth your time</p>
+      <h2>Good fit / not yet</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fit-card good">
+        <h4>Good fit</h4>
+        <ul>
+          <li>You have bulk commons/uncommons that don't move at shelf pricing</li>
+          <li>You're open to a low-effort side channel, not a rebuild of your POS</li>
+          <li>You're curious whether AI-assembled shopping lists could be a real marketing hook</li>
+        </ul>
+      </div>
+      <div class="fit-card bad">
+        <h4>Not yet</h4>
+        <ul>
+          <li>You've already got Zero fully dialed in and optimized</li>
+          <li>You don't stock singles, or your bins are already fully picked over</li>
+          <li>You want a finished product today — this is a proof of concept, not a shipped tool</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section">
+  <div class="container">
+    <aside class="cb-boundary">
+      <h3>I haven't built the store-specific version yet.</h3>
+      <p>The 16-batch case study above is what exists today. If the idea's a fit, tell me a bit about your store and what's sitting in your bins, and I'll follow up.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper">
+  <div class="container">
+    <div class="cta-card">
+      <h4>Want to see this built around your own inventory?</h4>
+      <p>Email me your store name and what's sitting in your bulk bins — I'll follow up if it's a fit.</p>
+      <a class="cb-button cb-button--primary" href="mailto:gera3d@gmail.com?subject=Interested%20in%20an%20AI%20pricing%20tool%20for%20our%20store&body=Store%20name%3A%0AWhat%27s%20sitting%20in%20your%20bulk%20bins%3A%0A">Email Gera about it</a>
+    </div>
+  </div>
+</section>
+
+<footer class="cb-footer">
+  <div class="container">
+    <div class="brand">The Magic the Gathering Cookbook</div>
+    <div class="links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="build-with-claude.html">Build your own</a>
+      <a href="my-decks.html">My decks</a>
+      <a href="mailto:gera3d@gmail.com">gera3d@gmail.com</a>
+    </div>
+    <div class="copyright">No cart, wishlist, or order was created on any un-purchased batch referenced above. © 2026 Gera.</div>
+  </div>
+</footer>
+
+</body>
+</html>
