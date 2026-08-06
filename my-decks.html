@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My decks — the personal Magic the Gathering Cookbook log</title>
+<meta name="description" content="Every commander recipe and priced batch I've built, what I actually bought, and the receipts behind each one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070d; --bg-paper:#09090f; --panel:rgba(255,255,255,.024); --line:rgba(255,255,255,.1);
+  --ink:#ededed; --muted:#c7c7cc; --dim:#8c8c94;
+  --orange:#e04c28; --orange-light:#ff7940; --orange-pale:#ffc1ae;
+  --sans:"Inter",-apple-system,"system-ui",sans-serif;
+  --mono:"DM Mono",SFMono-Regular,Consolas,monospace;
+  --container:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);padding-top:68px}
+a{color:var(--orange-light);text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding:0 24px}
+.cb-section{padding:80px 0}
+.cb-section--paper{background:var(--bg-paper)}
+.cb-eyebrow{font-family:var(--mono);font-size:.69rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-light);margin:0 0 12px}
+
+header.nav{position:fixed;top:0;left:0;right:0;z-index:50;height:68px;background:rgba(7,7,13,.88);backdrop-filter:blur(16px);display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--container);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px}
+.nav-brand{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-weight:700;font-size:.82rem;color:var(--ink);text-transform:uppercase;letter-spacing:.02em}
+.nav-brand .mark{display:block;width:22px;height:22px;object-fit:contain}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{font-family:var(--sans);font-size:.76rem;color:rgba(237,237,239,.52)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-cta{padding:9px 20px;border-radius:7px;font-family:var(--sans);font-size:.85rem;font-weight:600;background:rgba(224,76,40,.12);color:var(--orange-light)!important;white-space:nowrap}
+.nav-cta:hover{background:rgba(224,76,40,.2)}
+
+.cb-hero{padding:78px 0 70px}
+.cb-hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:46px 68px;align-items:start}
+.cb-title{font-family:var(--sans);font-weight:800;letter-spacing:-.05em;line-height:.98;font-size:clamp(2rem,4.6vw,3.2rem);margin:0 0 20px}
+.cb-title mark{background:none;color:var(--orange-light)}
+.cb-lede{font-size:1.06rem;color:var(--muted);line-height:1.7;margin:0 0 20px;max-width:520px}
+.cb-hero-note{margin:16px 0 0;color:#6b6b74;font-size:.8rem}
+
+.cb-info-card{border:1px solid rgba(255,121,64,.5);border-radius:13px;padding:22px}
+.cb-info-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cb-status{font-family:var(--mono);font-size:.66rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-pale);display:flex;align-items:center;gap:6px}
+.cb-status .dot{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.cb-domain{font-family:var(--mono);font-size:.67rem;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+.cb-info-card h3{margin:0 0 14px;font-size:1.05rem;font-weight:600;letter-spacing:-.01em;color:var(--ink);font-family:var(--mono)}
+.cb-info-rows{margin:0;display:grid;gap:9px}
+.cb-info-rows>div{display:grid;grid-template-columns:150px 1fr;gap:10px}
+.cb-info-rows dt{font-family:var(--mono);font-size:.7rem;color:var(--dim);margin:0}
+.cb-info-rows dd{margin:0;font-size:.84rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.cb-info-rows dd.ok{color:var(--orange-light);font-weight:600}
+.cb-info-rule{height:1px;background:var(--line);margin:10px 0}
+
+.cb-section-head{max-width:720px;margin:0 auto 34px}
+.cb-section-head.center{text-align:center;margin-left:auto;margin-right:auto}
+.cb-section-head .cb-eyebrow.center{justify-content:center}
+.cb-section-head h2{font-size:clamp(1.5rem,3vw,2.05rem);letter-spacing:-.03em;margin:0 0 10px;color:var(--ink)}
+.cb-section-head p{color:var(--muted);margin:0;font-size:.98rem;line-height:1.6}
+
+/* recipes */
+.recipe-nav{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:0 0 42px;font-family:var(--mono)}
+.recipe-nav a{padding:6px 12px;border:1px solid var(--line);border-radius:7px;color:var(--muted);text-decoration:none;font-size:.78rem}
+.recipe-nav a:hover{border-color:var(--orange-light);color:var(--orange-light)}
+.recipe{position:relative;border-radius:13px;overflow:hidden;border:1px solid var(--line);margin-bottom:16px;scroll-margin-top:90px;transition:border-color .15s ease}
+.recipe:hover{border-color:color-mix(in srgb, var(--accent) 55%, var(--line))}
+.recipe-grid{position:relative;display:grid;grid-template-columns:220px minmax(0,1fr);gap:0;background:var(--panel)}
+.recipe-art{position:relative;min-height:100%;background-size:cover;background-position:center;background-color:#0d0d14}
+.recipe-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,13,.15) 0%,rgba(7,7,13,.55) 100%),linear-gradient(90deg,rgba(7,7,13,.35),transparent 60%)}
+.recipe-art::before{content:"";position:absolute;inset:8px;z-index:2;border:1px solid rgba(255,255,255,.1);border-radius:8px;pointer-events:none}
+.recipe-num{position:absolute;top:12px;left:12px;z-index:3;width:26px;height:26px;border-radius:6px;background:rgba(7,7,13,.7);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;font-size:.74rem;font-weight:800;color:var(--accent, var(--orange-light));font-family:var(--mono)}
+.recipe-body{padding:22px 24px 24px}
+.recipe-strategy{color:var(--accent, var(--orange-light));font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin:0 0 6px;font-family:var(--mono)}
+.recipe-body h3{margin:0 0 8px;font-size:1.42rem;letter-spacing:-.02em}
+.recipe-body .tagline{margin:0 0 16px;color:var(--muted);font-size:.9rem;max-width:640px;line-height:1.55}
+.batch-list{display:grid;gap:7px}
+.batch{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--panel);text-decoration:none;color:var(--ink);transition:.12s}
+.batch:hover{border-color:var(--accent, var(--orange-light));background:rgba(255,255,255,.045)}
+.batch .price{font-family:var(--mono);font-weight:700;color:var(--orange-light);font-variant-numeric:tabular-nums;min-width:64px;font-size:.9rem}
+.batch .info{min-width:0}
+.batch .info b{display:block;font-size:.9rem}
+.batch .info span{display:block;color:var(--muted);font-size:.78rem;margin-top:1px}
+.badges{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.heat{padding:3px 8px;border-radius:5px;font-size:.64rem;font-weight:700;letter-spacing:.03em;white-space:nowrap;font-family:var(--mono)}
+.heat.mild{background:rgba(255,121,64,.12);color:var(--orange-pale)}
+.heat.medium{background:rgba(255,121,64,.16);color:var(--orange-light)}
+.heat.hot{background:rgba(224,76,40,.2);color:#ff7a5a}
+.heat.extrahot{background:rgba(224,76,40,.32);color:#ffab8a}
+.status{padding:3px 8px;border-radius:5px;font-size:.64rem;font-weight:700;letter-spacing:.02em;white-space:nowrap;font-family:var(--mono);border:1px solid transparent}
+.status.bought{background:rgba(224,76,40,.14);color:var(--orange-light);border-color:rgba(255,121,64,.3)}
+.status.notyet{background:rgba(255,255,255,.03);color:var(--dim);border-color:var(--line)}
+.batch.notyet{opacity:.68;border-style:dashed}
+.batch.notyet:hover{opacity:1}
+.batch .go{color:var(--dim);font-size:1rem;font-family:var(--mono)}
+
+/* case study */
+.ladder{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:9px;margin:24px 0}
+.rung{padding:13px 13px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel)}
+.rung.hi{border-color:rgba(255,121,64,.4);background:linear-gradient(160deg,rgba(255,121,64,.1),transparent)}
+.rung b{display:block;color:var(--orange-light);font-size:1.28rem;font-variant-numeric:tabular-nums;font-family:var(--mono)}
+.rung.hi b{color:var(--orange-light)}
+.rung span{display:block;color:var(--muted);font-size:.8rem;margin-top:4px;line-height:1.4}
+.rung .status{display:inline-block;margin-top:6px}
+.cb-boundary{padding:20px 22px;border-left:3px solid var(--orange);border-radius:0 10px 10px 0;background:rgba(224,76,40,.09);color:var(--muted);font-size:.92rem;line-height:1.6;margin-top:8px}
+.cb-boundary strong{color:var(--ink)}
+.swaps{width:100%;border-collapse:collapse;margin-top:16px;font-size:.88rem}
+.swaps th{text-align:left;color:var(--orange-light);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:8px 12px;border-bottom:1px solid var(--line);font-family:var(--mono)}
+.swaps td{padding:9px 12px;border-bottom:1px solid var(--line);color:var(--muted)}
+.swaps td:first-child{color:var(--ink);white-space:nowrap;font-family:var(--mono);font-size:.85rem}
+.swaps td:nth-child(2){color:var(--orange-light);font-family:var(--mono);font-size:.85rem}
+.source-note{margin-top:14px;color:var(--dim);font-size:.78rem}
+
+footer.cb-footer{background:var(--bg);padding:40px 0 28px;text-align:left;color:var(--ink);border-top:1px solid var(--line)}
+footer.cb-footer .brand{font-weight:700;margin-bottom:14px;font-size:.95rem}
+footer.cb-footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:.85rem}
+footer.cb-footer .links a{color:var(--muted)}
+footer.cb-footer .links a:hover{color:var(--orange-light)}
+footer.cb-footer .copyright{color:#6b6b74;font-size:.78rem}
+
+@media(max-width:860px){
+  .cb-hero-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .recipe-grid{grid-template-columns:1fr}
+  .recipe-art{min-height:130px}
+  .batch{grid-template-columns:auto 1fr auto;grid-template-areas:"price info go" "badges info go"}
+  .batch .badges{grid-area:badges;align-items:flex-start}
+}
+@media(max-width:640px){ .nav-links{display:none} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="mtg-cookbook.html"><img class="mark" src="data:image/png;base64,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" alt="57">MTG Cookbook</a>
+    <div class="nav-links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="for-stores.html">For stores</a>
+      <a href="build-with-claude.html">Build your own</a>
+      <a href="my-decks.html" class="active">My decks</a>
+    </div>
+    <a class="nav-cta" href="build-with-claude.html">Build your own →</a>
+  </div>
+</header>
+
+<section class="cb-hero">
+  <div class="container cb-hero-grid">
+    <div>
+      <p class="cb-eyebrow">The personal log</p>
+      <h1 class="cb-title">Every deck I've built, priced, and <mark>actually bought</mark>.</h1>
+      <p class="cb-lede">Nine commanders, sixteen priced batches, nine real purchases. This is the list I check to see what I have, what it cost, and what's still just a recipe waiting to become an order.</p>
+    </div>
+    <div class="cb-info-card">
+      <div class="cb-info-top">
+        <span class="cb-status"><span class="dot"></span>Live data</span>
+        <span class="cb-domain">mtg-cookbook stat --mine</span>
+      </div>
+      <dl class="cb-info-rows">
+        <div><dt>Recipes</dt><dd>9</dd></div>
+        <div><dt>Batches</dt><dd>16</dd></div>
+        <div><dt>Cards priced live</dt><dd>1,104</dd></div>
+        <div><dt>Cheapest / priciest</dt><dd>$9.87 / $43.16</dd></div>
+        <div><dt>Average batch</dt><dd>$19.91</dd></div>
+      </dl>
+      <div class="cb-info-rule"></div>
+      <dl class="cb-info-rows">
+        <div><dt>Batches purchased</dt><dd class="ok">9 / 16</dd></div>
+        <div><dt>Subtotal, 15 exact batches</dt><dd>$298.63</dd></div>
+      </dl>
+      <div class="cb-info-rule"></div>
+      <p style="margin:0;color:var(--dim);font-size:.78rem;line-height:1.5">No cart or order exists for the 7 unpurchased batches.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cb-section cb-section--paper" id="recipes">
+  <div class="container">
+    <div class="cb-section-head center">
+      <p class="cb-eyebrow center">The recipes</p>
+      <h2>Nine commanders, each with its own build</h2>
+      <p>Every card links to its own gallery: hover a card there for art and rules text, copy the exact decklist, and read the live cost ledger. Purchased batches are marked — the rest are priced but never ordered.</p>
+    </div>
+    <div class="recipe-nav">
+      <a href="#r-kefka">Kefka</a><a href="#r-kratos">Kratos</a><a href="#r-nivmizzet">Niv-Mizzet</a>
+      <a href="#r-stiltzkin">Stiltzkin</a><a href="#r-terra">Terra</a><a href="#r-alibou">Alibou</a>
+      <a href="#r-balmor">Balmor</a><a href="#r-ryu">Ryu</a><a href="#r-yuna">Yuna</a>
+    </div>
+
+    <article class="recipe" id="r-kefka" style="--accent:#f06443">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Kefka, Court Mage"><div class="recipe-num">1</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Grixis · discard and burn</div>
+          <h3>Kefka, Court Mage</h3>
+          <p class="tagline">Six batches of the same recipe, from a bare-bones $9.87 to a full-power $127.33 — see the side-by-side breakdown in the deep dive below.</p>
+          <div class="batch-list">
+            <a class="batch notyet" href="kefka-deck-gallery-ten-dollar.html"><span class="price">$9.87</span><span class="info"><b>Hard floor</b><span>Enough discard, draw, and interaction to actually play</span></span><span class="badges"><span class="heat mild">MILD</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+            <a class="batch notyet" href="kefka-deck-gallery.html"><span class="price">$19.39</span><span class="info"><b>Ultra-budget core</b><span>The strict bulk-card CardTrader Zero build</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+            <a class="batch bought" href="kefka-deck-gallery-twenty-dollar.html"><span class="price">$19.90</span><span class="info"><b>$20 upgrade</b><span>Same core, plus real mana rocks, removal, and finishers</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+            <a class="batch notyet" href="kefka-deck-gallery-twenty-five-dollar.html"><span class="price">~$24.84</span><span class="info"><b>Combo-control</b><span>Niv-Mizzet + Curiosity as a real two-card win</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+            <a class="batch bought" href="kefka-deck-gallery-twenty-five-dollar-spellslinger.html"><span class="price">Under $25</span><span class="info"><b>Spellslinger</b><span>No combo package — cheap spells, tokens, growing threats</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-kratos" style="--accent:#f5bd62">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Kratos, God of War"><div class="recipe-num">2</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Mono-red · forced combat</div>
+          <h3>Kratos, God of War</h3>
+          <p class="tagline">Hasty Goblin tokens, Fumiko-and-goad effects that force the whole table to swing, and a double-strike finisher — a 5-power Kratos wearing Inquisitor's Flail hits for 20. Deck strength 6.0/10, strong casual.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="kratos-god-of-war-ultra-budget-gallery.html"><span class="price">$14.99</span><span class="info"><b>Ultra-budget commander</b><span>62 cards to buy · 37 Mountains supplied</span></span><span class="badges"><span class="heat mild">MILD</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-nivmizzet" style="--accent:#a8d8ff">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Niv-Mizzet, Supreme"><div class="recipe-num">3</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Five-color · spells engine</div>
+          <h3>Niv-Mizzet, Supreme</h3>
+          <p class="tagline">Token bodies convoke a five-color commander into play, then cheap graveyard spells recur for free every upkeep.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="niv-mizzet-supreme-basic-first-gallery.html"><span class="price">$13.11</span><span class="info"><b>Basic-first build</b><span>Leans on basic lands instead of paying for fixing</span></span><span class="badges"><span class="heat mild">MILD</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+            <a class="batch notyet" href="niv-mizzet-supreme-ultra-budget-gallery.html"><span class="price">$20.74</span><span class="info"><b>Ultra-budget convoke</b><span>A five-color mana base, plus room to draw and burn</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-stiltzkin" style="--accent:#ef8fb7">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Stiltzkin, Moogle Merchant"><div class="recipe-num">4</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Mono-white · political combat</div>
+          <h3>Stiltzkin, Moogle Merchant</h3>
+          <p class="tagline">Hand opponents awkward gifts and cursed goods, get paid a card when the trade lands, then turn the card advantage into a wide token board.</p>
+          <div class="batch-list">
+            <a class="batch notyet" href="stiltzkin-moogle-merchant-banger-gallery.html"><span class="price">$19.39</span><span class="info"><b>Party Favors</b><span>A real turn-one play: lifelinking Moogle, Aura/Equipment draw</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+            <a class="batch notyet" href="stiltzkin-moogle-merchant-budget-gallery.html"><span class="price">$22.30</span><span class="info"><b>Bad Gifts</b><span>Cursed artifacts for card draw, then go wide with tokens</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-terra" style="--accent:#88d9d1">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Terra, Magical Adept"><div class="recipe-num">5</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Five-color · Saga and Omen value</div>
+          <h3>Terra, Magical Adept</h3>
+          <p class="tagline">A green-red engine that earns its splash colors late: copy a Saga on Esper Terra's first chapters and it bursts forward immediately.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="terra-magical-adept-omen-constellation.html"><span class="price">$25.27</span><span class="info"><b>Omen Constellation</b><span>Cheap Omens and Sagas stacking constellation triggers</span></span><span class="badges"><span class="heat hot">HOT</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+            <a class="batch notyet" href="terra-magical-adept-cardtrader-zero.html"><span class="price">$43.16</span><span class="info"><b>Saga-Burst Rebuild</b><span>The higher-ceiling version, still English Zero only</span></span><span class="badges"><span class="heat extrahot">EXTRA HOT</span><span class="status notyet">not yet</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-alibou" style="--accent:#98d6e8">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Alibou, Ancient Witness"><div class="recipe-num">6</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Boros · Vehicles</div>
+          <h3>Alibou, Ancient Witness</h3>
+          <p class="tagline">Crew cheap Vehicles, attack, and turn every tapped artifact into damage plus a scry, care of Alibou's trigger.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="alibou-ultra-budget-vehicles-gallery.html"><span class="price">$12.78</span><span class="info"><b>Ultra-budget Vehicles</b><span>63 cards to buy · 37 basics supplied</span></span><span class="badges"><span class="heat mild">MILD</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-balmor" style="--accent:#7fc7df">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Balmor, Battlemage Captain"><div class="recipe-num">7</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Izzet · basic-land-only spells</div>
+          <h3>Balmor, Battlemage Captain</h3>
+          <p class="tagline">A pile of tiny, genuinely cheap spells that Balmor turns into +1/+0 and trample for the whole board — no "cheap staple" traps like a $2 Brainstorm.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="balmor-cheapest-best-deck-gallery.html"><span class="price">$14.72</span><span class="info"><b>Cheapest best deck</b><span>63 cards to buy · 37 basics supplied</span></span><span class="badges"><span class="heat mild">MILD</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-ryu" style="--accent:#a3d8f0">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Vikya, Scorching Stalwart"><div class="recipe-num">8</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Boros · equipment and training</div>
+          <h3>Ryu, World Warrior</h3>
+          <p class="tagline">Train Ryu behind a bigger attacker, gear up on cheap Equipment, and turn his post-combat Hadoken into removal and cards.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="ryu-world-warrior-ultra-budget-zero-gallery.html"><span class="price">$16.70</span><span class="info"><b>Zero budget commander</b><span>63 nonlands · 37 basics supplied</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="recipe" id="r-yuna" style="--accent:#c4a9ef">
+      <div class="recipe-grid">
+        <div class="recipe-art" data-art="Yuna, Hope of Spira"><div class="recipe-num">9</div></div>
+        <div class="recipe-body">
+          <div class="recipe-strategy">Selesnya · Saga recursion</div>
+          <h3>Yuna, Hope of Spira</h3>
+          <p class="tagline">Mill useful Sagas and Auras into the graveyard, cast Yuna, then reuse one each end step while enchantment creatures turn lifelink into pressure.</p>
+          <div class="batch-list">
+            <a class="batch bought" href="yuna-budget-saga-cardtrader-only.html"><span class="price">$21.47</span><span class="info"><b>Budget Sagas</b><span>63 cards · Yuna and 36 basics already owned</span></span><span class="badges"><span class="heat medium">MEDIUM</span><span class="status bought">bought</span></span><span class="go">→</span></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="cb-section" id="six-batches">
+  <div class="container">
+    <div class="cb-section-head center">
+      <p class="cb-eyebrow center">Deep dive</p>
+      <h2>Kefka's six batches</h2>
+      <p>Same commander, same Grixis discard-and-burn brief, six price ceilings. The strategy doesn't change — the money spent on it does. Two of the five priced gallery batches turned into real purchases.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="rung"><b>$9.87</b><span>Hard floor — enough discard, draw, and interaction to actually play</span><br><span class="status notyet">not yet</span></div>
+      <div class="rung"><b>$19.39</b><span>Ultra-budget core — the strict bulk-card Zero build</span><br><span class="status notyet">not yet</span></div>
+      <div class="rung"><b>$19.90</b><span>Same core + real mana rocks, removal, and finishers</span><br><span class="status bought">bought</span></div>
+      <div class="rung"><b>~$24.84</b><span>Combo-control — Niv-Mizzet + Curiosity as a real two-card win</span><br><span class="status notyet">not yet</span></div>
+      <div class="rung"><b>Under $25</b><span>Spellslinger variant — no combo package, just cheap spells and tokens</span><br><span class="status bought">bought</span></div>
+      <div class="rung hi"><b>$51.13</b><span>Aggressively budget, still dangerous — three real combo lines kept</span></div>
+      <div class="rung hi"><b>$127.33</b><span>Full-power build — every win condition, no compromises</span></div>
+    </div>
+
+    <div class="cb-boundary">
+      <strong>The number that matters:</strong> going from the $127.33 full-power build down to the $51.13 aggressive-budget build cuts the price by roughly 60% — and keeps two of its three real combo finishes intact (Niv-Mizzet + Curiosity for a repeatable two-card win, and Dualcaster Mage + Twinflame + Impact Tremors for a table-ending burn line). What gets cut is precision, not the plan.
+    </div>
+
+    <table class="swaps">
+      <tr><th>Full-power card</th><th>Budget swap</th><th>What survives</th></tr>
+      <tr><td>Reanimate</td><td>Dread Return</td><td>The reanimation line — slower, still recursive</td></tr>
+      <tr><td>Windfall</td><td>Whispering Madness</td><td>Whole-table discard and hand refill</td></tr>
+      <tr><td>Mystic Remora</td><td>Chasm Skulker</td><td>A draw payoff instead of a premium draw tax</td></tr>
+      <tr><td>Counterspell / Arcane Denial</td><td>Mana Leak / Deprive</td><td>Protection, with lower late-game reliability</td></tr>
+      <tr><td>Vandalblast / Rapid Hybridization</td><td>By Force / Infernal Grasp</td><td>Artifact and creature removal</td></tr>
+    </table>
+    <p class="source-note">Figures are from a live CardTrader Zero scan taken August 4, 2026, and are a merchandise-subtotal floor — not a checkout total. The $51.13 and $127.33 full builds are documented reference decks, not live gallery batches. The five priced gallery pages above have hover-card art and an exact decklist.</p>
+  </div>
+</section>
+
+<footer class="cb-footer">
+  <div class="container">
+    <div class="brand">The Magic the Gathering Cookbook</div>
+    <div class="links">
+      <a href="mtg-cookbook.html">Overview</a>
+      <a href="for-stores.html">For stores</a>
+      <a href="build-with-claude.html">Build your own</a>
+      <a href="mailto:gera3d@gmail.com">gera3d@gmail.com</a>
+    </div>
+    <div class="copyright">Every price above is a live CardTrader Zero merchandise-subtotal floor — the cheapest eligible English listing found at scan time, not a checkout total. Shipping, tax, and Zero fees excluded. Card art from Scryfall. © 2026 Gera.</div>
+  </div>
+</footer>
+
+<script>
+const art = {
+  "Kefka, Court Mage": "https://cards.scryfall.io/art_crop/front/8/f/8fcf3fbb-1ddd-437e-81c1-f5a3133f5ee8.jpg",
+  "Kratos, God of War": "https://cards.scryfall.io/art_crop/front/f/b/fb97e2a1-0e86-4c12-8d31-6ff7b825ca10.jpg",
+  "Niv-Mizzet, Supreme": "https://cards.scryfall.io/art_crop/front/d/a/da1ff886-d3c8-43e5-8bf0-ba4f0b259781.jpg",
+  "Stiltzkin, Moogle Merchant": "https://cards.scryfall.io/art_crop/front/0/6/06a972a4-0c1b-4f12-a5a5-fdea47c4cd35.jpg",
+  "Terra, Magical Adept": "https://cards.scryfall.io/art_crop/front/f/b/fbd447aa-588d-4c4d-925e-a7d3bdf6a65c.jpg",
+  "Alibou, Ancient Witness": "https://cards.scryfall.io/art_crop/front/1/0/10ff4bac-1f93-4dd3-987a-523a6f733a1e.jpg",
+  "Balmor, Battlemage Captain": "https://cards.scryfall.io/art_crop/front/0/b/0b45ab13-9bb6-48af-8b37-d97b25801ac8.jpg",
+  "Vikya, Scorching Stalwart": "https://cards.scryfall.io/art_crop/front/d/6/d65a3a8b-ebf8-4e51-8b57-5b14e5cb7abb.jpg",
+  "Yuna, Hope of Spira": "https://cards.scryfall.io/art_crop/front/3/5/35b613ad-86f0-431b-af93-147d21041fde.jpg"
+};
+document.querySelectorAll("[data-art]").forEach(el => {
+  const url = art[el.getAttribute("data-art")];
+  if (!url) return;
+  const test = new Image();
+  test.onload = () => { el.style.backgroundImage = `url("${url}")`; };
+  test.src = url;
+});
+</script>
+
+</body>
+</html>
